@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  color: hsl(245, 24%, 90%);
+  background-color: hsl(243, 49%, 8%);
+}
+
+.card {
+  margin: auto;
+  margin-top: 2rem;
+  padding: 0.6rem;
+  width: 40rem;
+  background-color: hsl(243, 36%, 16%);
+}

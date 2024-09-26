@@ -1,8 +1,12 @@
 {
   "name": "snake-paint",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,9 +17,17 @@
   "description": "",
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.1",
-    "eslint": "^9.11.0",
-    "eslint-config-prettier": "^9.1.0",
+    "eslint": "^8.24.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-react": "^7.31.8",
     "prettier": "^3.3.3",
     "vite": "^5.4.7"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zustand": "^5.0.0-rc.2"
   }
 }
