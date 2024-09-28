@@ -1,33 +1,11 @@
-import { createContext } from "react";
-import { CNV } from "./snake-paint/canvasReducer";
+import SnakePaint from "./snake-paint/SnakePaint";
 
-const svgCanvasSize = 16;
-
-const SnakePaintContext = createContext();
-
-function SnakePaint() {
-  const [canvas, dispatchCanvas] = useReducer(CNV.reducer, CNV.init);
-
+const Paint = () => {
   return (
-    <SnakePaintContext.Provider value={{ canvas, dispatchCanvas }}>
-      {props.children}
-    </SnakePaintContext.Provider>
+    <SnakePaint>
+      <SnakePaint.Canvas />
+    </SnakePaint>
   );
-}
+};
 
-function Controls() {
-  return (
-    <div>
-      <button />
-    </div>
-  );
-}
-
-function Canvas() {
-  <svg viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg"></svg>;
-}
-
-export default SnakePaint;
-
-SnakePaint.Controls = Controls;
-SnakePaint.Canvas = Canvas;
+export default Paint;
