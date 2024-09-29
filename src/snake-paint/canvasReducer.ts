@@ -5,7 +5,7 @@ import { makeNewCanvas } from "./utils";
 const initCanvas: Canvas = {
   size: 8,
   pixels: makeNewCanvas(8),
-  selected: "1:1",
+  selected: "0:0",
 };
 
 const ACTIONS = {
@@ -22,14 +22,6 @@ const canvasReducer: Reducer<Canvas, CanvasAction> = (state, action) => {
     prev = { ...state };
   } else {
     prev = { ...initCanvas };
-  }
-
-  if (!state) {
-    return {
-      size: 8,
-      pixels: makeNewCanvas(8),
-      selected: "1:1",
-    };
   }
 
   switch (action.type) {
@@ -57,6 +49,8 @@ const canvasReducer: Reducer<Canvas, CanvasAction> = (state, action) => {
       prev.pixels = [...canvasWithout, item];
       break;
     }
+    default:
+      break;
   }
 
   return prev;

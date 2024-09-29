@@ -5,15 +5,35 @@
 }
 
 :root {
+  /* #####SPACING##### */
   --spacing-s: 0.5rem;
   --spacing-m: 1rem;
   --spacing-l: 2rem;
   --spacing-xl: 4rem;
+
+  /* #####BACKGROUND-COLORS##### */
+  --bg-lvl-0: hsl(244, 38%, 8%);
+  --bg-lvl-1: hsl(244, 32%, 12%);
+  --bg-lvl-2: hsl(244, 24%, 16%);
+  --bg-lvl-3: hsl(244, 24%, 18%);
+
+  /* #####TEXT-COLORS##### */
+  --color-lvl-0: hsl(245, 16%, 80%);
+  --color-lvl-1: hsl(245, 16%, 85%);
+  --color-lvl-2: hsl(245, 24%, 90%);
+  --color-lvl-3: hsl(245, 24%, 95%);
+
+  /* #####ACCENT-COLORS##### */
 }
 
 body {
-  color: hsl(245, 24%, 90%);
-  background-color: hsl(243, 49%, 8%);
+  color: var(--color-lvl-0);
+  background-color: var(--bg-lvl-0);
+}
+kbd {
+  font-family: Inter;
+  font-weight: bold;
+  border: 2 px solid hsl(245, 24%, 90%);
 }
 
 .card {
@@ -30,5 +50,5 @@ body {
   display: flex;
   justify-content: center;
   padding: var(--spacing-xl);
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--bg-lvl-1);
 }

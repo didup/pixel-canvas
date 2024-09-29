@@ -36,7 +36,7 @@ class ColorGenerator {
   };
 
   make = function mk(this: ColorGenerator) {
-    return `hsl(${this.hue}, ${Math.floor(Math.random() * 100) + 1}%, ${Math.floor(Math.random() * 50) + 1}%)`;
+    return `hsl(${this.hue}, ${Math.floor(Math.random() * 80) + 1}%, ${Math.floor(Math.random() * 50) + 1}%)`;
   };
 }
 
@@ -66,4 +66,26 @@ export const makeNewCanvas = (num: number): Pixel[] => {
   }
 
   return canvas;
+};
+
+export const getPixelPos = ({
+  pixelId,
+  pixelSize,
+  selected,
+}: {
+  pixelId: string;
+  pixelSize: number;
+  selected: string;
+}) => {
+  const coords = pixelId.split(":").map((str) => +str);
+  const x = getNewCoord(coords[0], pixelSize);
+  const y = getNewCoord(coords[1], pixelSize);
+
+  function getNewCoord(oldCoord: number, size: number) {
+    if (selected === pixelId) return Math.floor(oldCoord * size) + 4;
+
+    return Math.floor(oldCoord * size);
+  }
+
+  return [x, y];
 };

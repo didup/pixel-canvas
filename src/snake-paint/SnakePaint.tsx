@@ -1,4 +1,4 @@
-import React, {
+import {
   createContext,
   useContext,
   useReducer,
@@ -6,8 +6,9 @@ import React, {
   Dispatch,
   Reducer,
 } from "react";
-import { CNV } from "./canvasReducer";
 import { Canvas, CanvasAction } from "./types";
+import { CNV } from "./canvasReducer";
+import { getPixelPos } from "./utils";
 
 const SnakePaintContext = createContext<{
   canvas: Canvas;
@@ -28,7 +29,28 @@ function SnakePaint({ children }: { children: ReactElement }) {
 }
 
 function Controls() {
-  return <div></div>;
+  return (
+    <div className="controls wasd">
+      <div>
+        <button className="btn" type="button">
+          <kbd>D</kbd>
+        </button>
+      </div>
+      <div>
+        <button className="btn" type="button">
+          <kbd>W</kbd>
+        </button>
+
+        <button className="btn" type="button">
+          <kbd>A</kbd>
+        </button>
+
+        <button className="btn" type="button">
+          <kbd>S</kbd>
+        </button>
+      </div>
+    </div>
+  );
 }
 
 function SVGCanvas() {
@@ -47,16 +69,25 @@ function SVGCanvas() {
         viewBox={`0 0 ${canvasDimensions} ${canvasDimensions}`}
         xmlns="http://www.w3.org/2000/svg"
       >
-        {canvas?.pixels.map((el) => (
-          <rect
-            x={Math.floor(+el.id.split(":")[0] * pixelSize)}
-            y={Math.floor(+el.id.split(":")[1] * pixelSize)}
-            key={el.id}
-            width={pixelSize}
-            height={pixelSize}
-            style={{ fill: el.color, opacity: el.opacity }}
-          />
-        ))}
+        {canvas?.pixels.map((el) => {
+          const [x, y] = getPixelPos({
+            pixelSize,
+            pixelId: el.id,
+            selected: canvas.selected,
+          });
+
+          return (
+            <rect
+              id={el.id}
+              x={x}
+              y={y}
+              key={el.id}
+              width={el.id === canvas.selected ? pixelSize - 8 : pixelSize}
+              height={el.id === canvas.selected ? pixelSize - 8 : pixelSize}
+              style={{ fill: el.color, opacity: el.opacity }}
+            />
+          );
+        })}
       </svg>
     </div>
   );
