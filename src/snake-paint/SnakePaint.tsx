@@ -78,13 +78,13 @@ function SVGCanvas() {
 
           return (
             <rect
-              id={el.id}
               x={x}
               y={y}
-              key={el.id}
               width={el.id === canvas.selected ? pixelSize - 8 : pixelSize}
               height={el.id === canvas.selected ? pixelSize - 8 : pixelSize}
               style={{ fill: el.color, opacity: el.opacity }}
+              key={el.id}
+              id={el.id}
             />
           );
         })}

@@ -82,9 +82,9 @@ export const getPixelPos = ({
   const y = getNewCoord(coords[1], pixelSize);
 
   function getNewCoord(oldCoord: number, size: number) {
-    if (selected === pixelId) return Math.floor(oldCoord * size) + 4;
+    if (selected !== pixelId) return Math.floor(oldCoord * size);
 
-    return Math.floor(oldCoord * size);
+    return Math.floor(oldCoord * size) + 4;
   }
 
   return [x, y];
