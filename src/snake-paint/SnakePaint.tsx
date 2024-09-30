@@ -53,7 +53,7 @@ function Controls() {
       case "s":
         return `${rowIndex}:${columnIndex !== maxIndex - 1 ? columnIndex + 1 : 0}`;
       case "d":
-        return `${rowIndex !== maxIndex - 1 ? rowIndex + 1 : maxIndex - 1}:${columnIndex}`;
+        return `${rowIndex !== maxIndex - 1 ? rowIndex + 1 : 0}:${columnIndex}`;
       case "w":
         return `${rowIndex}:${(columnIndex !== 0 ? columnIndex : maxIndex) - 1}`;
       default:
@@ -138,7 +138,11 @@ function SVGCanvas() {
               y={y}
               width={el.id === canvas.selected ? pixelSize - 8 : pixelSize}
               height={el.id === canvas.selected ? pixelSize - 8 : pixelSize}
-              style={{ fill: el.color, opacity: el.opacity }}
+              style={{
+                fill: el.color,
+                opacity: el.opacity,
+                stroke: el.id === canvas.selected ? "white" : "none",
+              }}
               key={el.id}
               id={el.id}
             />
