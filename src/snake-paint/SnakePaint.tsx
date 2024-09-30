@@ -2,6 +2,8 @@ import {
   createContext,
   useContext,
   useReducer,
+  useCallback,
+  useEffect,
   ReactElement,
   Dispatch,
   Reducer,
@@ -29,6 +31,61 @@ function SnakePaint({ children }: { children: ReactElement }) {
 }
 
 function Controls() {
+  const context = useContext(SnakePaintContext);
+  const [row, column] = (context?.canvas?.selected || "0:0")
+    .split(":")
+    .map((el) => +el);
+  const canvasSize = context?.canvas?.size ?? 0;
+
+  // w => selectItems Row Value should be decreased by one
+  //      except if it is at zero, in which case it should be set to
+  //      the maximum which is canvasSize minus 1
+
+  function handleMovement(
+    rowIndex: number,
+    columnIndex: number,
+    maxIndex: number,
+    direction: string,
+  ) {
+    switch (direction) {
+      case "a":
+        return `${(rowIndex !== 0 ? rowIndex : maxIndex) - 1}:${columnIndex}`;
+      case "s":
+        return `${rowIndex}:${columnIndex !== maxIndex - 1 ? columnIndex + 1 : 0}`;
+      case "d":
+        return `${rowIndex !== maxIndex - 1 ? rowIndex + 1 : maxIndex - 1}:${columnIndex}`;
+      case "w":
+        return `${rowIndex}:${(columnIndex !== 0 ? columnIndex : maxIndex) - 1}`;
+      default:
+        return "0:0";
+    }
+  }
+
+  const handleEvent = useCallback(
+    (e: KeyboardEvent) => {
+      if (["w", "d", "s", "a"].some((el) => el === e.key.toLowerCase())) {
+        context?.dispatchCanvas({
+          type: "selectItem",
+          itemId: handleMovement(
+            row,
+            column,
+            canvasSize,
+            e.key.toLocaleLowerCase(),
+          ),
+        });
+      }
+    },
+    [context?.canvas.selected],
+  );
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleEvent);
+
+    return () => {
+      window.removeEventListener("keydown", handleEvent);
+    };
+  }, [handleEvent]);
+
   return (
     <div className="controls wasd">
       <div>
@@ -37,14 +94,13 @@ function Controls() {
         </button>
       </div>
       <div>
+        controller
         <button className="btn" type="button">
           <kbd>W</kbd>
         </button>
-
         <button className="btn" type="button">
           <kbd>A</kbd>
         </button>
-
         <button className="btn" type="button">
           <kbd>S</kbd>
         </button>
