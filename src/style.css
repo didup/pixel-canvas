@@ -12,10 +12,10 @@
   --spacing-xl: 4rem;
 
   /* #####BACKGROUND-COLORS##### */
-  --bg-lvl-0: hsl(244, 38%, 8%);
-  --bg-lvl-1: hsl(244, 32%, 12%);
-  --bg-lvl-2: hsl(244, 24%, 16%);
-  --bg-lvl-3: hsl(244, 24%, 18%);
+  --bg-lvl-0: hsl(240, 3%, 6%);
+  --bg-lvl-1: hsl(260, 5%, 11%);
+  --bg-lvl-2: hsl(245, 16%, 16%);
+  --bg-lvl-3: hsl(240, 22%, 15%);
 
   /* #####TEXT-COLORS##### */
   --color-lvl-0: hsl(245, 16%, 80%);
@@ -40,7 +40,7 @@ kbd {
   margin: auto;
   margin-top: var(--spacing-l);
   padding: var(--spacing-m);
-  width: 40rem;
+  width: 90vw;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-s);
@@ -51,4 +51,68 @@ kbd {
   justify-content: center;
   padding: var(--spacing-xl);
   background-color: var(--bg-lvl-1);
+}
+
+kbd {
+  font-family: monospace;
+}
+
+.control-bar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: black;
+  padding: var(--spacing-m);
+}
+
+.controls-cursor {
+  width: fit-content;
+  display: grid;
+  grid-template-columns: 1fr [start-pos] 1fr [mid] 1fr [end-pos];
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+
+  .btn {
+    width: 28px;
+    height: 28px;
+    text-transform: uppercase;
+  }
+
+  .btn--w {
+    grid-row: 1;
+    grid-column-end: mid;
+  }
+
+  .btn--a,
+  .btn--s,
+  .btn--d {
+    grid-row: 2;
+  }
+}
+
+.controls-edit {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  .btn {
+    width: 28px;
+    height: 28px;
+    text-transform: uppercase;
+  }
+  .btn--q {
+    grid-row: 1;
+    grid-column-end: 1;
+  }
+
+  .btn--k {
+    grid-column-end: 4;
+    grid-row-start: 3;
+  }
+  .btn--s,
+  .btn--d {
+    grid-row: 2;
+  }
 }

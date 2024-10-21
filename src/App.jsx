@@ -1,13 +1,18 @@
 import { createRoot } from "react-dom/client";
-
-import Paint from "./Paint";
 import { StrictMode } from "react";
+
+import ActiveCanvas from "./snake-paint/components/ActiveCanvas";
+import Controls from "./snake-paint/components/Controls";
+import PaintContextWrapper from "./snake-paint/contexts/PaintContextWrapper";
 
 const App = () => {
   return (
     <div className="card">
       <h2>{"SnakePaint"}</h2>
-      <Paint />
+      <PaintContextWrapper>
+        <ActiveCanvas />
+        <Controls />
+      </PaintContextWrapper>
     </div>
   );
 };

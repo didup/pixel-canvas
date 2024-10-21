@@ -1,10 +1,12 @@
-import SnakePaint from "./snake-paint/SnakePaint";
+import SnakePaint from "./snake-paint/contexts/PaintContextWrapper";
 
 const Paint = () => {
+
+  
   return (
     <SnakePaint>
       <SnakePaint.Canvas />
-      <SnakePaint.Controls/>
+      <SnakePaint.Controls />
     </SnakePaint>
   );
 };

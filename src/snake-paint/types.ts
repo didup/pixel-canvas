@@ -24,7 +24,6 @@ export type CanvasAction =
     }
   | {
       type: "setColor";
-      itemId: string;
       value: string;
     };
 

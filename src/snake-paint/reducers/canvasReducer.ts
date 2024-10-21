@@ -1,6 +1,6 @@
-import { ReducerObj, Canvas, CanvasAction } from "./types";
+import { ReducerObj, Canvas, CanvasAction } from "../types";
 import { Reducer } from "react";
-import { makeNewCanvas } from "./utils";
+import { makeNewCanvas } from "../utils/utils";
 
 const initCanvas: Canvas = {
   size: 8,
@@ -43,9 +43,9 @@ const canvasReducer: Reducer<Canvas, CanvasAction> = (state, action) => {
       break;
     }
     case "setColor": {
-      const item = prev.pixels.filter((el) => el.id === action.itemId)[0];
+      const item = prev.pixels.filter((el) => el.id === prev.selected)[0];
       item.color = action.value;
-      const canvasWithout = prev.pixels.filter((el) => el.id !== action.itemId);
+      const canvasWithout = prev.pixels.filter((el) => el.id !== prev.selected);
       prev.pixels = [...canvasWithout, item];
       break;
     }
