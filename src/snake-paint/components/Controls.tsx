@@ -13,35 +13,17 @@ const Controls = () => {
   )[0].color;
 
   return (
-    <div className="control-bar">
-      <div className="controls-cursor">
-        {moveKeys.map((targetKey) => (
-          <button
-            className={`btn btn--${targetKey}`}
-            key={`button-${targetKey}`}
-            onClick={() =>
-              dispatchCanvas({
-                type: "selectItem",
-                itemId: handleMovement(row, column, canvasSize, targetKey),
-              })
-            }
-            type="button"
-          >
-            <kbd>{targetKey}</kbd>
-          </button>
-        ))}
-      </div>
-      <div className="controls-edit">
-        {editKeys
-          .filter((_, i) => i % 2 === 1)
-          .map((targetKey) => (
+    <div className="controls-bar">
+      <div>
+        <div className="controls-cursor">
+          {moveKeys.map((targetKey) => (
             <button
               className={`btn btn--${targetKey}`}
               key={`button-${targetKey}`}
               onClick={() =>
                 dispatchCanvas({
-                  type: "setColor",
-                  value: handleColor(currentColor, targetKey),
+                  type: "selectItem",
+                  itemId: handleMovement(row, column, canvasSize, targetKey),
                 })
               }
               type="button"
@@ -49,8 +31,29 @@ const Controls = () => {
               <kbd>{targetKey}</kbd>
             </button>
           ))}
+        </div>
+        <p>move cursor</p>
       </div>
       <div>
+        <div className="controls-edit">
+          {editKeys
+            .filter((key) => key.match(/[a-z]/))
+            .map((targetKey) => (
+              <button
+                className={`btn btn--${targetKey}`}
+                key={`button-${targetKey}`}
+                onClick={() =>
+                  dispatchCanvas({
+                    type: "setColor",
+                    value: handleColor(currentColor, targetKey),
+                  })
+                }
+                type="button"
+              >
+                <kbd>{targetKey}</kbd>
+              </button>
+            ))}
+        </div>
         <p>move cursor</p>
       </div>
     </div>

@@ -40,7 +40,7 @@ kbd {
   margin: auto;
   margin-top: var(--spacing-l);
   padding: var(--spacing-m);
-  width: 90vw;
+  max-width: 60vh;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-s);
@@ -60,7 +60,7 @@ kbd {
 .control-bar {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  /* width: 100%; */
   position: fixed;
   bottom: 0;
   background-color: black;
@@ -72,7 +72,7 @@ kbd {
   display: grid;
   grid-template-columns: 1fr [start-pos] 1fr [mid] 1fr [end-pos];
   grid-template-rows: 1fr 1fr;
-  gap: 4px;
+  gap: var(--spacing-s);
 
   .btn {
     width: 28px;
@@ -94,8 +94,9 @@ kbd {
 
 .controls-edit {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr 1fr;
+  gap: var(--spacing-s);
 
   .btn {
     width: 28px;
@@ -104,15 +105,23 @@ kbd {
   }
   .btn--q {
     grid-row: 1;
-    grid-column-end: 1;
+    grid-column: 1;
   }
 
   .btn--k {
-    grid-column-end: 4;
-    grid-row-start: 3;
-  }
-  .btn--s,
-  .btn--d {
+    grid-column: 3;
     grid-row: 2;
+  }
+  .btn--l {
+    grid-column: 4;
+    grid-row: 2;
+  }
+  .btn--o {
+    grid-column: 4;
+    grid-row: 1;
+  }
+  .btn--p {
+    grid-column: 3;
+    grid-row: 1;
   }
 }
